@@ -60,29 +60,29 @@ export default function ConfigPanel({ onClose }: Props) {
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
           <label className="flex flex-col gap-1">
-            <span className="text-[12.5px] font-bold text-[#5B7075]">Dias fixos de entrega (ex: 5, 20)</span>
+            <span className="text-[12.5px] font-bold text-[#314347]">Dias fixos de entrega (ex: 5, 20)</span>
             <input className="border border-[#C9D8DA] rounded-lg px-3 py-2 text-sm bg-[#FBFDFD] outline-none focus:border-[#0E7C86]" value={dias} onChange={e => setDias(e.target.value)} />
           </label>
           <label className="flex flex-col gap-1">
-            <span className="text-[12.5px] font-bold text-[#5B7075]">Prazo hospital p/ fechar conta (dias)</span>
+            <span className="text-[12.5px] font-bold text-[#314347]">Prazo hospital p/ fechar conta (dias)</span>
             <input type="number" min="0" className="border border-[#C9D8DA] rounded-lg px-3 py-2 text-sm bg-[#FBFDFD] outline-none focus:border-[#0E7C86]" value={fechamento} onChange={e => setFechamento(e.target.value)} />
           </label>
           <label className="flex flex-col gap-1">
-            <span className="text-[12.5px] font-bold text-[#5B7075]">Prazo pagamento convênio (dias)</span>
+            <span className="text-[12.5px] font-bold text-[#314347]">Prazo pagamento convênio (dias)</span>
             <input type="number" min="1" className="border border-[#C9D8DA] rounded-lg px-3 py-2 text-sm bg-[#FBFDFD] outline-none focus:border-[#0E7C86]" value={pgto} onChange={e => setPgto(e.target.value)} />
           </label>
           <label className="flex flex-col gap-1">
-            <span className="text-[12.5px] font-bold text-[#5B7075]">Hospital padrão</span>
+            <span className="text-[12.5px] font-bold text-[#314347]">Hospital padrão</span>
             <input className="border border-[#C9D8DA] rounded-lg px-3 py-2 text-sm bg-[#FBFDFD] outline-none focus:border-[#0E7C86]" value={hospital} onChange={e => setHospital(e.target.value)} />
           </label>
         </div>
 
-        <h3 className="text-[14px] font-bold text-[#5B7075] uppercase tracking-[1px] mb-1">Convênios</h3>
-        <p className="text-[13px] text-[#5B7075] mb-3">Estes convênios aparecem como botões no cadastro. Adicione ou remova conforme sua carteira.</p>
+        <h3 className="text-[14px] font-bold text-[#314347] uppercase tracking-[1px] mb-1">Convênios</h3>
+        <p className="text-[13px] text-[#314347] mb-3">Estes convênios aparecem como botões no cadastro. Adicione ou remova conforme sua carteira.</p>
         
         <div className="flex flex-col gap-2 mb-3">
           {listaConv.length === 0 ? (
-            <div className="text-[13px] text-[#5B7075]">Nenhum convênio cadastrado.</div>
+            <div className="text-[13px] text-[#314347]">Nenhum convênio cadastrado.</div>
           ) : (
             listaConv.map((cv, i) => (
               <div key={i} className="flex items-center gap-2 bg-[#FBFDFD] border border-[#C9D8DA] rounded-lg px-3 py-2 text-[13.5px]">

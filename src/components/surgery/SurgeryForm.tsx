@@ -94,17 +94,17 @@ export default function SurgeryForm({ onClose, onAdd }: Props) {
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
           <label className="flex flex-col gap-1">
-            <span className="text-[12.5px] font-bold text-[#5B7075]">Paciente *</span>
+            <span className="text-[12.5px] font-bold text-[#314347]">Paciente *</span>
             <input className="border border-[#C9D8DA] rounded-lg px-3 py-2 text-sm bg-[#FBFDFD] outline-none focus:border-[#0E7C86]" placeholder="Nome do paciente" value={paciente} onChange={e => setPaciente(e.target.value)} />
           </label>
           <label className="flex flex-col gap-1">
-            <span className="text-[12.5px] font-bold text-[#5B7075]">Hospital</span>
+            <span className="text-[12.5px] font-bold text-[#314347]">Hospital</span>
             <input className="border border-[#C9D8DA] rounded-lg px-3 py-2 text-sm bg-[#FBFDFD] outline-none focus:border-[#0E7C86]" value={hospital} onChange={e => setHospital(e.target.value)} />
           </label>
         </div>
 
         <div className="mb-4">
-          <span className="text-[12.5px] font-bold text-[#5B7075] block mb-2">Convênio *</span>
+          <span className="text-[12.5px] font-bold text-[#314347] block mb-2">Convênio *</span>
           <div className="flex flex-wrap gap-2">
             {convenios.map(cv => (
               <button key={cv} onClick={() => setConvenio(cv)} className={`border rounded-full px-3 py-1.5 text-[13px] font-semibold transition-colors ${convenio === cv ? 'bg-[#0E7C86] text-white border-[#0E7C86]' : 'bg-white text-[#12333B] border-[#C9D8DA]'}`}>
@@ -115,7 +115,7 @@ export default function SurgeryForm({ onClose, onAdd }: Props) {
         </div>
 
         <div className="mb-4">
-          <span className="text-[12.5px] font-bold text-[#5B7075] block mb-2">Acomodação *</span>
+          <span className="text-[12.5px] font-bold text-[#314347] block mb-2">Acomodação *</span>
           <div className="flex flex-wrap gap-2">
             {ACOMODACOES.map(ac => (
               <button key={ac} onClick={() => setAcomodacao(ac)} className={`border rounded-full px-3 py-1.5 text-[13px] font-semibold transition-colors ${acomodacao === ac ? 'bg-[#12333B] text-white border-[#12333B]' : 'bg-white text-[#12333B] border-[#C9D8DA]'}`}>
@@ -127,13 +127,13 @@ export default function SurgeryForm({ onClose, onAdd }: Props) {
 
         <div className="mb-4">
           <label className="flex flex-col gap-1">
-            <span className="text-[12.5px] font-bold text-[#5B7075]">Data da cirurgia *</span>
+            <span className="text-[12.5px] font-bold text-[#314347]">Data da cirurgia *</span>
             <input type="date" className="border border-[#C9D8DA] rounded-lg px-3 py-2 text-sm bg-[#FBFDFD] w-full max-w-[200px] outline-none focus:border-[#0E7C86]" value={dataCirurgia} onChange={e => setDataCirurgia(e.target.value)} />
           </label>
         </div>
 
         <div className="mb-4">
-          <span className="text-[12.5px] font-bold text-[#5B7075] block mb-1">Procedimentos (tabela TUSS) *</span>
+          <span className="text-[12.5px] font-bold text-[#314347] block mb-1">Procedimentos (tabela TUSS) *</span>
           <input 
             className="border border-[#C9D8DA] rounded-lg px-3 py-2 text-sm bg-[#FBFDFD] w-full outline-none focus:border-[#0E7C86] mb-2" 
             placeholder="Filtrar por código ou nome... (ex: septoplastia)" 
@@ -152,7 +152,7 @@ export default function SurgeryForm({ onClose, onAdd }: Props) {
                   </button>
                 );
               }) : (
-                <div className="p-3 text-[13px] text-[#5B7075]">Nenhum procedimento encontrado.</div>
+                <div className="p-3 text-[13px] text-[#314347]">Nenhum procedimento encontrado.</div>
               )}
             </div>
           )}
@@ -169,24 +169,24 @@ export default function SurgeryForm({ onClose, onAdd }: Props) {
             ))}
           </div>
           
-          <button onClick={addProcLivre} className="text-[12.5px] text-[#5B7075] underline mt-2 hover:text-[#12333B]">
+          <button onClick={addProcLivre} className="text-[12.5px] text-[#314347] underline mt-2 hover:text-[#12333B]">
             + adicionar procedimento fora da tabela (texto livre)
           </button>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
           <label className="flex flex-col gap-1">
-            <span className="text-[12.5px] font-bold text-[#5B7075]">Instrum. cirúrgica (R$)</span>
+            <span className="text-[12.5px] font-bold text-[#314347]">Instrum. cirúrgica (R$)</span>
             <input type="number" min="0" step="0.01" className="border border-[#C9D8DA] rounded-lg px-3 py-2 text-sm bg-[#FBFDFD] outline-none" value={instrumentacao} onChange={e => setInstrumentacao(e.target.value ? Number(e.target.value) : '')} placeholder="opcional" />
           </label>
           <label className="flex flex-col gap-1">
-            <span className="text-[12.5px] font-bold text-[#5B7075]">Taxa de vídeo (R$)</span>
+            <span className="text-[12.5px] font-bold text-[#314347]">Taxa de vídeo (R$)</span>
             <input type="number" min="0" step="0.01" className="border border-[#C9D8DA] rounded-lg px-3 py-2 text-sm bg-[#FBFDFD] outline-none" value={taxaVideo} onChange={e => setTaxaVideo(e.target.value ? Number(e.target.value) : '')} placeholder="opcional" />
           </label>
         </div>
 
         <label className="flex flex-col gap-1 mb-4">
-          <span className="text-[12.5px] font-bold text-[#5B7075]">Observações</span>
+          <span className="text-[12.5px] font-bold text-[#314347]">Observações</span>
           <textarea className="border border-[#C9D8DA] rounded-lg px-3 py-2 text-sm bg-[#FBFDFD] min-h-[60px] outline-none" value={obs} onChange={e => setObs(e.target.value)} placeholder="Ex.: OPME, particularidades da conta..."></textarea>
         </label>
 

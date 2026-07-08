@@ -46,7 +46,7 @@ export default function SurgeryList({ casos, onUpdateStatus, onDelete, cfg }: Pr
   };
 
   if (casos.length === 0) {
-    return <div className="bg-white border border-[#C9D8DA] rounded-xl p-9 text-center text-[#5B7075] border-dashed text-[14.5px]">Nenhum registro corresponde ao filtro atual.</div>;
+    return <div className="bg-white border border-[#C9D8DA] rounded-xl p-9 text-center text-[#314347] border-dashed text-[14.5px]">Nenhum registro corresponde ao filtro atual.</div>;
   }
 
   return (
@@ -82,7 +82,7 @@ export default function SurgeryList({ casos, onUpdateStatus, onDelete, cfg }: Pr
                 <div className="text-[13.5px] text-[#0E7C86] font-semibold mt-0.5">
                   {c.procedimento || c.procedimentos?.map(p => `${p.c ? p.c + ' ' : ''}${p.n}`).join(' | ')}
                 </div>
-                <div className="text-[12.5px] text-[#5B7075] mt-1 flex flex-wrap gap-1 items-center">
+                <div className="text-[12.5px] text-[#314347] mt-1 flex flex-wrap gap-1 items-center">
                   <span className="bg-[#EDF3F4] rounded-md px-2 py-px font-semibold">{c.convenio || "—"}</span>
                   {c.acomodacao && <span className="bg-[#EDF3F4] rounded-md px-2 py-px font-semibold">{c.acomodacao}</span>}
                   <span>{c.hospital}</span>
@@ -95,7 +95,7 @@ export default function SurgeryList({ casos, onUpdateStatus, onDelete, cfg }: Pr
                   {st.label}
                 </span>
                 {atrasada && <div className="text-xs text-[#B3372F] font-bold mt-1.5 text-right">{Math.abs(diasRestantes)} dia(s) além do prazo</div>}
-                {!atrasada && pendente && prev && <div className="text-xs text-[#5B7075] mt-1.5 text-right">pagamento em ~{diasRestantes} dia(s)</div>}
+                {!atrasada && pendente && prev && <div className="text-xs text-[#314347] mt-1.5 text-right">pagamento em ~{diasRestantes} dia(s)</div>}
               </div>
             </div>
 
@@ -133,7 +133,7 @@ export default function SurgeryList({ casos, onUpdateStatus, onDelete, cfg }: Pr
               
               <span className="flex-1"></span>
               
-              <button onClick={() => setDetalheAberto(detalheAberto === c.id ? null : c.id)} className="bg-transparent border-none text-[#5B7075] text-[12.5px] underline hover:text-[#12333B]">
+              <button onClick={() => setDetalheAberto(detalheAberto === c.id ? null : c.id)} className="bg-transparent border-none text-[#314347] text-[12.5px] underline hover:text-[#12333B]">
                 {detalheAberto === c.id ? 'fechar' : 'detalhes'}
               </button>
               <button onClick={() => handleExcluir(c.id)} className="bg-transparent border-none text-[#B3372F] text-[12.5px] underline hover:text-red-800">
@@ -159,13 +159,13 @@ export default function SurgeryList({ casos, onUpdateStatus, onDelete, cfg }: Pr
             <h2 className="text-[17px] font-bold m-0 mb-3.5">{dlg.titulo}</h2>
             
             <div className="flex flex-col gap-1 mb-3">
-              <span className="text-[12.5px] font-bold text-[#5B7075]">{dlg.rotulo}</span>
+              <span className="text-[12.5px] font-bold text-[#314347]">{dlg.rotulo}</span>
               <input type="date" className="border border-[#C9D8DA] rounded-lg px-3 py-2 text-sm bg-[#FBFDFD] outline-none" value={dlg.data} onChange={e => setDlg({...dlg, data: e.target.value})} />
             </div>
 
             {dlg.pedirValor && (
               <div className="flex flex-col gap-1 mb-3">
-                <span className="text-[12.5px] font-bold text-[#5B7075]">Valor pago (R$) — opcional</span>
+                <span className="text-[12.5px] font-bold text-[#314347]">Valor pago (R$) — opcional</span>
                 <input type="number" min="0" step="0.01" className="border border-[#C9D8DA] rounded-lg px-3 py-2 text-sm bg-[#FBFDFD] outline-none" value={dlg.valor} onChange={e => setDlg({...dlg, valor: e.target.value})} />
               </div>
             )}
@@ -185,7 +185,7 @@ export default function SurgeryList({ casos, onUpdateStatus, onDelete, cfg }: Pr
 const Etapa = ({ rotulo, data, on, alerta }: any) => (
   <div className="text-center min-w-[90px]">
     <div className={`w-3 h-3 rounded-full mx-auto mb-1.5 ${alerta ? 'bg-[#B3372F]' : on ? 'bg-[#0E7C86] shadow-[0_0_0_3px_#DDF0F1]' : 'bg-[#C9D8DA]'}`}></div>
-    <div className="text-[11px] uppercase tracking-[0.5px] text-[#5B7075] font-semibold">{rotulo}</div>
+    <div className="text-[11px] uppercase tracking-[0.5px] text-[#314347] font-semibold">{rotulo}</div>
     <div className="text-[13px] font-semibold text-[#12333B]">{data}</div>
   </div>
 );

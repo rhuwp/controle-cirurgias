@@ -41,7 +41,7 @@ export default function DashboardCards({ casos, filtroAtual, onFilterChange }: P
           ${isAtivo ? 'ring-2 ring-offset-2 ring-[#0E7C86]' : ''}`}
       >
         <div className={`text-3xl font-bold leading-tight ${configCor.color}`}>{valor}</div>
-        <div className="text-[12.5px] text-[#5B7075] mt-1 font-semibold">{titulo}</div>
+        <div className="text-[12.5px] text-[#314347] mt-1 font-semibold">{titulo}</div>
       </button>
     );
   };
