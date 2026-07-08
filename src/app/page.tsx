@@ -1,27 +1,24 @@
 'use client';
 import { useState } from 'react';
-
-// Importando componentes
 import Header from '@/components/layout/Header';
 import DashboardCards from '@/components/dashboard/DashboardCards';
 import SurgeryList from '@/components/surgery/SurgeryList';
 import SurgeryForm from '@/components/surgery/SurgeryForm';
-
-// Importando hooks e utils
 import { useSurgeries } from '@/hooks/useSurgeries';
+import { useConfig } from '@/hooks/useConfig';
 import { semAcento } from '@/utils/helpers';
 
 export default function Home() {
   const [modalNovoAberto, setModalNovoAberto] = useState(false);
-  const [painelConfigAberto, setPainelConfigAberto] = useState(false);
   const [filtro, setFiltro] = useState('todos');
   const [busca, setBusca] = useState('');
   
-  const { casos, isLoaded } = useSurgeries();
+  // Pegamos as funções e a config do banco de dados local
+  const { casos, isLoaded, atualizarStatus, excluirCirurgia, addCirurgia } = useSurgeries();
+  const { cfg } = useConfig();
 
   if (!isLoaded) return null;
 
-  // Lógica de filtro e busca
   const casosFiltrados = casos.filter(c => {
     if (filtro === 'atrasadas') {
       const prev = c.pagamentoPrevisto ? new Date(c.pagamentoPrevisto) : null;
@@ -50,11 +47,7 @@ export default function Home() {
         onExport={() => alert("Exportação em breve!")}
       />
 
-      <DashboardCards 
-        casos={casos} 
-        filtroAtual={filtro} 
-        onFilterChange={setFiltro} 
-      />
+      <DashboardCards casos={casos} filtroAtual={filtro} onFilterChange={setFiltro} />
 
       <div className="flex gap-2 flex-wrap items-center mb-4">
         {['todos', 'aguardando', 'apresentada', 'atrasadas', 'paga', 'glosada'].map(f => (
@@ -68,17 +61,26 @@ export default function Home() {
           </button>
         ))}
         <input 
-          className="ml-auto border border-[#C9D8DA] rounded-lg px-4 py-2 text-[13.5px] min-w-[260px] bg-white outline-none focus:border-[#0E7C86] focus:ring-1 focus:ring-[#0E7C86]" 
+          className="ml-auto border border-[#C9D8DA] rounded-lg px-4 py-2 text-[13.5px] min-w-[260px] bg-white outline-none focus:border-[#0E7C86]" 
           placeholder="Buscar paciente, convênio..." 
           value={busca}
           onChange={(e) => setBusca(e.target.value)}
         />
       </div>
 
-      <SurgeryList casos={casosFiltrados} />
+      {/* AQUI ESTÁ A CORREÇÃO: Passando as funções para a lista! */}
+      <SurgeryList 
+        casos={casosFiltrados} 
+        onUpdateStatus={atualizarStatus} 
+        onDelete={excluirCirurgia}
+        cfg={cfg}
+      />
 
       {modalNovoAberto && (
-        <SurgeryForm onClose={() => setModalNovoAberto(false)} />
+        <SurgeryForm 
+          onClose={() => setModalNovoAberto(false)} 
+          onAdd={addCirurgia} 
+        />
       )}
     </main>
   );

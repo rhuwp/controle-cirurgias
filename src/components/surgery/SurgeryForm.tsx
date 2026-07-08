@@ -4,16 +4,17 @@ import { useSurgeries } from '@/hooks/useSurgeries';
 import { CATALOGO, LATERALIDADES } from '@/constants/tuss';
 import { ACOMODACOES } from '@/constants/system';
 import { toISO, addDays, proximaEntrega, previsaoPagamento, semAcento, fmt } from '@/utils/helpers';
-import { Procedimento } from '@/types';
+import { Procedimento, Cirurgia } from '@/types';
 
 
 interface Props {
   onClose: () => void;
+  onAdd: (novaCirurgia: Omit<Cirurgia, 'id' | 'criadoEm' | 'status'>) => void; 
 }
 
-export default function SurgeryForm({ onClose }: Props) {
+export default function SurgeryForm({ onClose, onAdd }: Props) {
   const { cfg, convenios } = useConfig();
-  const { addCirurgia } = useSurgeries();
+ 
 
   // Estados do formulário
   const [paciente, setPaciente] = useState('');
@@ -69,7 +70,7 @@ export default function SurgeryForm({ onClose }: Props) {
   const handleSalvar = () => {
     if (!podeSalvar) return;
     
-    addCirurgia({
+    onAdd({
       paciente: paciente.trim(),
       dataCirurgia,
       apresentacaoPrevista: dataEntregaPrevista,
