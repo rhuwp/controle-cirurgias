@@ -7,11 +7,14 @@ import SurgeryForm from '@/components/surgery/SurgeryForm';
 import { useSurgeries } from '@/hooks/useSurgeries';
 import { useConfig } from '@/hooks/useConfig';
 import { semAcento } from '@/utils/helpers';
+import ConfigPanel from '@/components/layout/ConfigPanel';
+import { exportarExcel } from '@/utils/export';
 
 export default function Home() {
   const [modalNovoAberto, setModalNovoAberto] = useState(false);
   const [filtro, setFiltro] = useState('todos');
   const [busca, setBusca] = useState('');
+  const [painelConfigAberto, setPainelConfigAberto] = useState(false);
   
   // Pegamos as funções e a config do banco de dados local
   const { casos, isLoaded, atualizarStatus, excluirCirurgia, addCirurgia } = useSurgeries();
@@ -43,8 +46,10 @@ export default function Home() {
     <main className="min-h-screen bg-[#F4F8F8] p-8 md:px-12 pb-16 font-sans">
       <Header 
         onNewSurgery={() => setModalNovoAberto(true)} 
-        onOpenConfig={() => alert("Painel de Config em breve!")}
-        onExport={() => alert("Exportação em breve!")}
+       onOpenConfig={() => setPainelConfigAberto(true)}
+        onExport={() => exportarExcel(casosFiltrados)}
+
+        
       />
 
       <DashboardCards casos={casos} filtroAtual={filtro} onFilterChange={setFiltro} />
@@ -81,6 +86,10 @@ export default function Home() {
           onClose={() => setModalNovoAberto(false)} 
           onAdd={addCirurgia} 
         />
+      )}
+      
+      {painelConfigAberto && (
+        <ConfigPanel onClose={() => setPainelConfigAberto(false)} />
       )}
     </main>
   );
